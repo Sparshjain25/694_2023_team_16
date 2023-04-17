@@ -33,6 +33,7 @@ def get_hashtags(str_input):
 def get_tweets(str_input):
     list=[]
     db=connect()
+    tot1=0
     strt=time.time()
     results=db.tweets.find({"tweet":{"$regex": "(?i){}".format(str_input)}})
     end=time.time()
@@ -63,6 +64,37 @@ def get_tweets(str_input):
         tot2+=end-strt
     print(f"Total Time={tot1+tot2:.5f}")
 
-get_tweets("covid 19")
+#get_tweets("covid 19")
+
+def get_by_user(str_input):
+    list=[]
+    db=connect()
+    strt=time.time()
+    r=db.tweets.find({"user_id":str_input})
+    end=time.time()
+    for i in r:
+        list.append(i)
+        print(i["tweet"])
+        print("-------------------x-----------------------")
+    print(len(list))
+    print(f"Total Time={end-strt:.5f}")
+
+#get_by_user("1087735689091928064")
+
+def get_retweets(str_input):
+    list=[]
+    db=connect()
+    strt=time.time()
+    r=db.retweets.find({"main_tweet_id":str_input}).sort("retweets_count",1)
+    end=time.time()
+    for i in r:
+        list.append(i)
+        print(i["user_id"])
+        print("Likes=",i["Likes"])
+        print("-------------------x-----------------------")
+    print(len(list))
+    print(f"Total Time={end-strt:.5f}")
+
+get_retweets("1249315454797168641")
 
 
