@@ -30,6 +30,8 @@ def get_hashtags(str_input):
     print(len(list))
     print(f"Total Time={end-strt:.5f}")
 
+get_hashtags("corona")
+
 def get_tweets(str_input):
     list=[]
     db=connect()
@@ -64,7 +66,7 @@ def get_tweets(str_input):
         tot2+=end-strt
     print(f"Total Time={tot1+tot2:.5f}")
 
-#get_tweets("covid 19")
+get_tweets("covid 19")
 
 def get_by_user(str_input):
     list=[]
@@ -79,7 +81,7 @@ def get_by_user(str_input):
     print(len(list))
     print(f"Total Time={end-strt:.5f}")
 
-#get_by_user("1087735689091928064")
+get_by_user("1087735689091928064")
 
 def get_retweets(str_input):
     list=[]
@@ -96,5 +98,3 @@ def get_retweets(str_input):
     print(f"Total Time={end-strt:.5f}")
 
 get_retweets("1249315454797168641")
-
-
