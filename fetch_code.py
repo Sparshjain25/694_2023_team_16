@@ -16,6 +16,12 @@ def connect():
     db=client.dbmspro
     return db
 
+def get_by_tweet_id(str_input):
+    db=connect()
+    r=list(db.tweets.find({"post_id":str_input}))
+    return r
+
+
 def get_hashtags(str_input):
     list=[]
     str_input=str_input.replace(" ","")
@@ -29,44 +35,61 @@ def get_hashtags(str_input):
     print()
     print(len(list))
     print(f"Total Time={end-strt:.5f}")
+    return list
 
-get_hashtags("corona")
+#get_hashtags("corona")
 
 def get_tweets(str_input):
-    list=[]
+    list1=[]
+    list2=[]
+    q_list=[]
     db=connect()
     tot1=0
     strt=time.time()
-    results=db.tweets.find({"tweet":{"$regex": "(?i){}".format(str_input)}})
+    results=db.tweets.find({"tweet":{"$regex": "(?i){}".format(" "+str_input+" ")}}).hint("priority_-1")
     end=time.time()
     for i in results:
-        i["priority"]=1
-        list.append(i)
+        i["priority0"]=1
+        list1.append(i)
         print(i["tweet"])
+        print(i["priority"])
         print("-------------------x-----------------------")
     #print(len(list))
     tot1=end-strt
-    #print(f"Total Time={end-strt:.5f}")
+    #print(f"Total Time={end-strt:.5f}")+
+    #####
+    ####
     #now searching by words
-    pattern=".*"
+    pattern=".*(?i)"
     words=str_input.split()
     tot2=0
     if(len(words)>1):
         for i in words:
-            pattern+=i+".*"
+            pattern+=i+".*(?i)"
+        pattern=pattern[:-4]
         strt=time.time()
-        results=db.tweets.find({"tweet":{"$regex": pattern}})
+        results=db.tweets.find({"tweet":{"$regex": pattern}}).hint("priority_-1")
+        result = db.test.find({
+        "$and":[
+                {"tweet": {"$regex": pattern}},
+                {"tweet": {"$not" :{"$regex": "(?i){}".format(" "+str_input+" ")}}}]})
         end=time.time()
         for i in results:
-            i["priority"]=0.5
-            list.append(i)
+            i["priority0"]=0
+            list2.append(i)
             print(i["tweet"])
+            print(i["priority"])
             print("-------------------x-----------------------")
+        list=list1+list2
         print(len(list))
         tot2+=end-strt
+    for i in list:
+        if(not i["quoted_id"]=="NULL"):
+            q_list.append(get_by_tweet_id(i["quoted_id"]))
     print(f"Total Time={tot1+tot2:.5f}")
+    return list1,list2,q_list
 
-get_tweets("covid 19")
+l1,l2,q_re=get_tweets("covid 19")
 
 def get_by_user(str_input):
     list=[]
@@ -80,8 +103,9 @@ def get_by_user(str_input):
         print("-------------------x-----------------------")
     print(len(list))
     print(f"Total Time={end-strt:.5f}")
+    return list
 
-get_by_user("1087735689091928064")
+#get_by_user("1087735689091928064")
 
 def get_retweets(str_input):
     list=[]
@@ -96,5 +120,21 @@ def get_retweets(str_input):
         print("-------------------x-----------------------")
     print(len(list))
     print(f"Total Time={end-strt:.5f}")
+    return list
 
-get_retweets("1249315454797168641")
+#get_retweets("1249315454797168641")
+
+ids=[]
+j=0
+def Intersection(lst1, lst2):
+    return [d1 for d1 in lst1 for d2 in lst2 if d1 == d2]
+print(Intersection(l1,l2))
+#print(len(re1))
+#print(len(q_re))
+# for i in re:
+#     ids.append(i["post_id"])
+#     if(i["post_id"] in ids):
+#         print(i["tweet"])
+#         print("------------------")
+#         j=j+1
+# print(j)
