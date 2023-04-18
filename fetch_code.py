@@ -46,13 +46,14 @@ def get_tweets(str_input):
     db=connect()
     tot1=0
     strt=time.time()
-    results=db.tweets.find({"tweet":{"$regex": "(?i){}".format(" "+str_input+" ")}}).hint("priority_-1")
+    results=db.tweets.find({"tweet":{"$regex": "(?i){}".format(" "+str_input+" ")}})#.hint("priority_-1")
     end=time.time()
     for i in results:
         i["priority0"]=1
         list1.append(i)
         print(i["tweet"])
         print(i["priority"])
+        print(i["priority0"])
         print("-------------------x-----------------------")
     #print(len(list))
     tot1=end-strt
@@ -68,17 +69,18 @@ def get_tweets(str_input):
             pattern+=i+".*(?i)"
         pattern=pattern[:-4]
         strt=time.time()
-        results=db.tweets.find({"tweet":{"$regex": pattern}}).hint("priority_-1")
-        result = db.test.find({
-        "$and":[
+        #results=db.tweets.find({"tweet":{"$regex": pattern}}).hint("priority_-1")
+        result = db.tweets.find({
+            "$and":[
                 {"tweet": {"$regex": pattern}},
-                {"tweet": {"$not" :{"$regex": "(?i){}".format(" "+str_input+" ")}}}]})
+                {"tweet": {"$not" :{"$regex": "(?i){}".format(" "+str_input+" ")}}}]})#.hint("priority_-1")
         end=time.time()
-        for i in results:
+        for i in result:
             i["priority0"]=0
             list2.append(i)
             print(i["tweet"])
             print(i["priority"])
+            print(i["priority0"])
             print("-------------------x-----------------------")
         list=list1+list2
         print(len(list))
