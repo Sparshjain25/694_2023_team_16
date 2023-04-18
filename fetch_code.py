@@ -46,7 +46,7 @@ def get_tweets(str_input):
     db=connect()
     tot1=0
     strt=time.time()
-    results=db.tweets.find({"tweet":{"$regex": "(?i){}".format(" "+str_input+" ")}})#.hint("priority_-1")
+    results=db.tweets.find({"tweet":{"$regex": "(?i){}".format(" "+str_input+" ")}}).hint("priority_-1")
     end=time.time()
     for i in results:
         i["priority0"]=1
@@ -73,7 +73,7 @@ def get_tweets(str_input):
         result = db.tweets.find({
             "$and":[
                 {"tweet": {"$regex": pattern}},
-                {"tweet": {"$not" :{"$regex": "(?i){}".format(" "+str_input+" ")}}}]})#.hint("priority_-1")
+                {"tweet": {"$not" :{"$regex": "(?i){}".format(" "+str_input+" ")}}}]}).hint("priority_-1")
         end=time.time()
         for i in result:
             i["priority0"]=0
