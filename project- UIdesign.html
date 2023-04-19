@@ -75,8 +75,48 @@
         });</script>
 
 
+    <!-- User interface (hidden by default) -->
+    <div id="user-interface" style="display:none">
+        <!-- Back button -->
+        <button id="user-back-button">Back</button>
+
+        <!-- User table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Followers</th>
+                    <th>View Details</th>
+                    <th>Tweets</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- example row (repeat as needed) -->
+                <tr>
+                    <td>@exampleuser</td>
+                    <td>Example User</td>
+                    <td>New York, NY</td>
+                    <td>100,000</td>
+                    <td><button class="view-details-button">View Details</button></td>
+                    <td><button class="user-tweets-button">Tweets</button></td>
+                </tr>
+                <!-- additional rows here -->
+            </tbody>
+        </table>
+
+        <!-- More button -->
+        <button id="user-more-button">More</button>
+    </div>
 
 
+    <script>const userButton = document.getElementById("users-button");
+        const userInterface = document.getElementById("user-interface");
+
+        userButton.addEventListener("click", () => {
+            userInterface.style.display = "block";
+        });</script>
 
 </body>
-</html>
+</html >
