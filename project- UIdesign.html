@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Twitter Search</title>
+</head>
+<body>
+    <!-- Search Box -->
+    <form action="" method="post">
+        <label for="search">Search:</label>
+        <input type="text" id="search" name="search">
+        <input type="submit" value="Search">
+    </form>
+
+    <!-- Search Results Buttons -->
+    <div>
+        <button onclick="showUserResults()">Users</button>
+        <button onclick="showTagResults()">Hashtags</button>
+        <button onclick="showTweetResults()">Tweets</button>
+    </div>
+
+    <!-- User Results Table -->
+    <table id="userResults" style="display:none">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Followers</th>
+                <th>View Details</th>
+                <th>Tweets</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- User results will be dynamically generated here -->
+        </tbody>
+    </table>
+    <button onclick="goBack()">Back</button>
+    <button onclick="showMore()">More</button>
+
+    <!-- Tag Results Table -->
+    <table id="tagResults" style="display:none">
+        <thead>
+            <tr>
+                <th>Tweet</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Tag results will be dynamically generated here -->
+        </tbody>
+    </table>
+    <button onclick="goBack()">Back</button>
+    <button onclick="showMore()">More</button>
+
+    <!-- Tweet Results Table -->
+    <table id="tweetResults" style="display:none">
+        <thead>
+            <tr>
+                <th>Tweet</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Tweet results will be dynamically generated here -->
+        </tbody>
+    </table>
+    <button onclick="goBack()">Back</button>
+    <button onclick="showMore()">More</button>
+
+    <script>function showUserResults() {
+			document.getElementById("userResults").style.display = "block";
+			document.getElementById("tagResults").style.display = "none";
+			document.getElementById("tweetResults").style.display = "none";
+		}
+
+		function showTagResults() {
+			document.getElementById("userResults").style.display = "none";
+			document.getElementById("tagResults").style.display = "block";
+			document.getElementById("tweetResults").style.display = "none";
+		}
+
+		function showTweetResults() {
+			document.getElementById("userResults").style.display = "none";
+			document.getElementById("tagResults").style.display = "none";
+			document.getElementById("tweetResults").style.display = "block";
+		}
+
+		function goBack() {
+			window.history.back();
+		}
+
+		function showMore() {
+			// Add code to show more results here
+		}</script>
+</body>
+</html>
+
