@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Twitter Search Results</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+            margin-left: 10px;
+        }
+
+        .back-button {
+            background-color: #f44336;
+        }
+
+            .back-button:hover {
+                background-color: #d32f2f;
+            }
+    </style>
+</head>
+<body>
+    <h1>Twitter Search Results</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Tweet Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Replace the example data with the actual search results -->
+            <tr>
+                <td>Example User 1</td>
+                <td>
+                    Confederate States of America, which fought the remaining states of the Union during the American Civil War (1861–1865). With the Union's victory and preservation, slavery was abolished nationally by the Thirteenth Amendment.
+
+                    By 1900, the United States had established itself as a world power, becoming the world's largest economy. After Japan's attack on Pearl Harbor in 1941, the U.S. entered World War II on the Allied
+                </td>
+            </tr>
+            <tr>
+                <td>Example User 2</td>
+                <td>Another example tweet content with some #searchcontent and other text.</td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+    <button class="back-button" onclick="location.href='homepage.html';">Back</button>
+    <button onclick="showMoreResults()">More</button>
+
+    <script>function showMoreResults() {
+            // This function should show all tweets with the search content.
+            // You will need to replace this alert with the actual code to display the search results.
+            alert("Showing more search results...");
+        }</script>
+</body>
+</html>

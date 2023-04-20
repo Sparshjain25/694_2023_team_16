@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Twitter Search App</title>
+    <style>
+        /* Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin: 0;
+            padding: 20px;
+            background-color: #1da1f2;
+            color: white;
+        }
+
+        input[type=text] {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            width: 70%;
+        }
+
+        button {
+            background-color: #1da1f2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #0e71a7;
+            }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 60px);
+        }
+
+        .users, .tags, .tweets {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .active {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <h1>Twitter Search App</h1>
+    <div class="search-bar">
+        <input type="text" placeholder="Search on Twitter...">
+        <button id="users-btn" onclick="location.href='userpage.html';">Users</button>    
+        <button id="tags-btn" onclick="location.href='hashtagpage.html';">Tags</button>
+        <button id="tweets-btn" onclick="location.href='tweetpage.html';">Tweets</button>
+    </div>
+    <div class="container">
+        <div class="users">
+            <h2>Users Interface</h2>
+            <!-- Add user interface content here -->
+        </div>
+        <div class="tags">
+            <h2>Tags Interface</h2>
+            <!-- Add tags interface content here -->
+        </div>
+        <div class="tweets">
+            <h2>Tweets Interface</h2>
+            <!-- Add tweets interface content here -->
+        </div>
+    </div>
+    <script>const usersBtn = document.getElementById('users-btn');
+        const tagsBtn = document.getElementById('tags-btn');
+        const tweetsBtn = document.getElementById('tweets-btn');
+        const usersDiv = document.querySelector('.users');
+        const tagsDiv = document.querySelector('.tags');
+        const tweetsDiv = document.querySelector('.tweets');
+
+        usersBtn.addEventListener('click', () => {
+            usersDiv.classList.add('active');
+            tagsDiv.classList.remove('active');
+            tweetsDiv.classList.remove('active');
+        });
+
+        tagsBtn.addEventListener('click', () => {
+            usersDiv.classList.remove('active');
+            tagsDiv.classList.add('active');
+            tweetsDiv.classList.remove('active');
+        });
+
+        tweetsBtn.addEventListener('click', () => {
+            usersDiv.classList.remove('active');
+            tagsDiv.classList.remove('active');
+            tweetsDiv.classList.add('active');
+        });</script>
+</body>
+</html>
