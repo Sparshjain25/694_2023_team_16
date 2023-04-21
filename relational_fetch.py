@@ -96,4 +96,4 @@ def get_user_details(str_input):
     return res
 
 get_users('covid')
-# print(get_user_details('sophia10635358'))
+print(get_user_details(''))
