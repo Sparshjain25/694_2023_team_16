@@ -55,7 +55,7 @@ def Quoted(id):
     lists=test.get_by_tweet_id(id)
     end=time.time()
     exec=f"{end-strt:.10f}"
-    return render_template('tweetpage_(1).html', data = lists[:min(len(lists),50)], time=exec, flag="Database",title = "Main ID",)
+    return render_template('tweetpage_(1).html', data = lists[:min(len(lists),50)], range=1 ,time=exec, flag="Database",title = "Main ID",)
 
 @app.route("/home/searched_results/users/<id>")
 def user(id):
