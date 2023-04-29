@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Twitter User Search Results</title>
+    <style>
+        /* Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .verified-tick {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            line-height: 16px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            background-color: #1DA1F2;
+            border-radius: 50%;
+        }
+
+        h1 {
+            margin: 0;
+            padding: 20px;
+            background-color: #1da1f2;
+            color: white;
+        }
+
+   
+
+        input[type=text] {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            width: 70%;
+        }
+
+        button {
+            background-color: #1da1f2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #0e71a7;
+            }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 60px);
+        }
+
+        .users, .tags, .tweets {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .active {
+            display: flex;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+            margin-left: 10px;
+        }
+
+        .back-button {
+            background-color: #f44336;
+        }
+
+            .back-button:hover {
+                background-color: #d32f2f;
+            }
+    </style>
+</head>
+<body>
+    <h1>Twitter User Search Results for {{title}}</h1>
+    <style>
+        h3 {
+            color: gray;
+            float: right;
+            
+        }
+    </style>
+    <h3>Time Taken from {{ flag }} = {{ time }}</h3>
+
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Account Name</th>
+                <th> Details </th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Replace the example data with the actual search results -->
+            <table id="data" class="table table-striped">
+                {% for line in data %}
+                <tr>
+                    {% if line[9] %}
+                    <td> {{ line[1]}} <span class="verified-tick">✓</span> </td>
+                    {% else %}
+                    <td> {{line[1]}} </td>
+                    {% endif %}
+                    <td> Description : {{ line[4] }} </td><td></td><td></td><td></td>
+                </tr>
+
+                <style>
+                    .details {
+                        width: 25%;
+                    }
+                </style>
+
+                <tr>
+                    <td> {{ "@"+line[2] }}</td>
+                    <td class="details">Location: {{line[3]}}</td>
+                    <td class="details">Followers:{{line[5]}}</td>
+                    <td class="details">Following:{{line[6]}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="details">No. of Tweets: {{line[8]}}</td>
+                    <td class="details">No. of Likes: {{line[7]}}</td>
+                    <td><a href="/home/user_tweets/{{line[0]}}">TWEETS</a></td>
+
+                    
+                <tr>
+                    <td></td>
+                    <td class="details">URL: {{line[11]}}</td>
+                    <td class="details">Created at:{{line[10]}}</td>
+                    <td></td>
+                </tr>
+
+
+                {% endfor %}
+            </table>
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+
+</body>
+</html>

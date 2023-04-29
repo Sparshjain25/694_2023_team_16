@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Twitter Search Results</title>
+    <style>
+
+        /* Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin: 0;
+            padding: 20px;
+            background-color: #1da1f2;
+            color: white;
+        }
+
+        input[type=text] {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            width: 70%;
+        }
+
+        button {
+            background-color: #1da1f2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #0e71a7;
+            }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 60px);
+        }
+
+        .users, .tags, .tweets {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .active {
+            display: flex;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+            margin-left: 10px;
+        }
+
+        .back-button {
+            background-color: #f44336;
+        }
+
+            .back-button:hover {
+                background-color: #d32f2f;
+            }
+    </style>
+</head>
+<body>
+    <h1>Twitter Tweet Search Results for {{title}}</h1>
+    <style>
+        h3 {
+            color: gray;
+            float: right;
+        }
+    </style>
+    <h3>Time Taken from {{ flag }} to fetch {{range}} = {{ time }}</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Account name</th>
+                <th>Tweet Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Replace the example data with the actual search results -->
+            <table id="data" class="table table-striped">
+                {% for line in data %}
+                <tr>
+                    <td> <a href="/home/searched_results/users/{{ line['user_id'] }}">{{ line["Account_Name"] }} </a></td>
+                    <td> {{ line["tweet"] }} </td>
+                </tr>
+                <tr>
+                    {% if not line["quoted_id"] == 'NULL' %}
+                    <td><a href="/home/searched_results/tweet/{{ line['quoted_id'] }}">MAIN ID</a></td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    <td> Likes: {{line["Likes"]}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="/home/searched_results/retweets_users/{{line['post_id']}}">Retweets</a>:{{line["retweets_count"]}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Comments:{{line["comments_count"]}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Quotes: {{line["quotes_count"]}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{line["Time_stamp"]}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+
+
+    <script>function showMoreResults() {
+            // This function should show all tweets with the search content.
+            // You will need to replace this alert with the actual code to display the search results.
+            alert("Showing more search results...");
+        }</script>
+</body>
+</html>
