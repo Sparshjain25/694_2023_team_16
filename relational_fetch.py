@@ -94,6 +94,3 @@ def get_user_details(str_input):
     res = cursor.fetchall()
     disconnect(cursor)
     return res
-
-get_users('covid')
-print(get_user_details(''))
