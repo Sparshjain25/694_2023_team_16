@@ -8,8 +8,8 @@ class Non_Relational():
         pass
 
     def connect(self):
-        username="dbmspro"
-        password="dbmspro"
+        username="*****"
+        password="*****"
         escaped_username = quote_plus(username)
         escaped_password = quote_plus(password)
         conn=f"mongodb+srv://{escaped_username}:{escaped_password}@cluster1.agzdz5g.mongodb.net/?retryWrites=true&w=majority"   
